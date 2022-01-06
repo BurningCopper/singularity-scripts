@@ -1,0 +1,36 @@
+#!/bin/bash
+QSIPREPVERSION=0.14.3
+
+# Check for $HOME/bin/ folder
+if ! ls $HOME/bin/ 
+then
+    mkdir $HOME/bin/
+    echo $HOME/bin/ has been created
+else
+    echo $HOME/bin/ already exists
+fi
+
+# Check for $HOME/singularity/ folder
+if ! ls $HOME/singularity/
+then
+    mkdir $HOME/singularity/
+    echo $HOME/singularity/ has been created
+else
+    echo $HOME/singularity/ already exists
+fi
+
+# Create qsiprep singularity container
+if ! ls $HOME/singularity/qsiprep-$QSIPREPVERSION.sif
+then
+    echo Creating qsiprep-$QSIPREPVERSION.sif Singularity container
+    cd $HOME/singularity/
+    singularity build qsiprep-$QSIPREPVERSION.sif docker://pennbbl/qsiprep:$QSIPREPVERSION
+else
+    echo qsiprep-$QSIPREPVERSION.sif already exists
+fi
+
+# Create qsiprep script
+echo Creating qsiprep run script
+echo "#!/bin/bash 
+singularity shell -B \$PWD -B \$FREESURFER_HOME \$HOME/singularity/qsiprep-$QSIPREPVERSION.sif" > $HOME/bin/qsiprep
+chmod +x $HOME/bin/qsiprep
