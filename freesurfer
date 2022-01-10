@@ -24,7 +24,7 @@ if ! ls $HOME/singularity/freesurfer-$FREESURFERVERSION.sif
 then
     echo Creating freesurfer-$FREESURFERVERSION.sif Singularity container
     cd $HOME/singularity/
-    singularity build freesurfer-$FREESURFERVERSION.sif docker://pennbbl/freesurfer:$FREESURFERVERSION
+    singularity build freesurfer-$FREESURFERVERSION.sif docker://freesurfer/freesurfer:$FREESURFERVERSION
 else
     echo freesurfer-$FREESURFERVERSION.sif already exists
 fi
