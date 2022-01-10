@@ -6,7 +6,7 @@ NOTE: Some of these scripts require large (10GB or more) downloads so may take t
 
 
 <*> qsiprep (https://github.com/PennLINC/qsiprep)=>
-The install script requires that the $FREESURFER_HOME system variable is set.  This is only for the purpose of providing the FreeSurfer license.txt file, which are available for free from the Freesurfer website: https://surfer.nmr.mgh.harvard.edu/ (No I will not share mine, get your own.)  The qsiprep container contains (and uses) its own Freesurfer install, so you can set $FREESURFER_HOME to any folder you like, as long as it contains your license.txt file.
+The install script requires that the $FREESURFER_HOME system variable is set.  This is only for the purpose of providing the FreeSurfer license.txt file, which is available for free from the Freesurfer website: https://surfer.nmr.mgh.harvard.edu/ (No I will not share mine, get your own.)  The qsiprep container contains (and uses) its own Freesurfer install, so you can set $FREESURFER_HOME to any folder you like, as long as it contains your license.txt file.
 
 The install script also requires that $HOME/bin is in the users path.
 
@@ -16,7 +16,11 @@ The application can be run by entering into a folder that has the input and outp
 **not available**
 
 <*> freesurfer (https://www.freesurfer.net/)
-**not available**
+The install script requires that the $FREESURFER_HOME system variable is set.  This is only for the purpose of providing the FreeSurfer license.txt file, which is available for free from the Freesurfer website.  The freesurfer container contains (and uses) its own Freesurfer install, so you can set $FREESURFER_HOME to any folder you like, as long as it contains your license.txt file.
+
+The install script also requires that $HOME/bin is in the users path.
+
+The application can be run by entering into a folder that has the input and output folders of interest, typing 'qsiprep' to enter the container, then entering in the expected qsiprep command line arguments (see qsiprep documentation for details).
 
 <*> AFNI (https://afni.nimh.nih.gov/)
 **not available**

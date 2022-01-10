@@ -1,0 +1,36 @@
+#!/bin/bash
+FREESURFERVERSION=7.2.0
+
+# Check for $HOME/bin/ folder
+if ! ls $HOME/bin/ 
+then
+    mkdir $HOME/bin/
+    echo $HOME/bin/ has been created
+else
+    echo $HOME/bin/ already exists
+fi
+
+# Check for $HOME/singularity/ folder
+if ! ls $HOME/singularity/
+then
+    mkdir $HOME/singularity/
+    echo $HOME/singularity/ has been created
+else
+    echo $HOME/singularity/ already exists
+fi
+
+# Create freesurfer singularity container
+if ! ls $HOME/singularity/freesurfer-$FREESURFERVERSION.sif
+then
+    echo Creating freesurfer-$FREESURFERVERSION.sif Singularity container
+    cd $HOME/singularity/
+    singularity build freesurfer-$FREESURFERVERSION.sif docker://pennbbl/freesurfer:$FREESURFERVERSION
+else
+    echo freesurfer-$FREESURFERVERSION.sif already exists
+fi
+
+# Create freesurfer script
+echo Creating freesurfer run script
+echo "#!/bin/bash 
+singularity shell -B \$PWD -B \$FREESURFER_HOME \$HOME/singularity/freesurfer-$FREESURFERVERSION.sif" > $HOME/bin/freesurfer
+chmod +x $HOME/bin/freesurfer
