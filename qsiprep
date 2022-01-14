@@ -33,7 +33,9 @@ else
 fi
 
 # Create qsiprep script
+# Have script check that $FREESURFER_HOME is set (exit with a message if failed)
+# Have script check that $FS_LISCENSE is set and set it to $FREESURFER_HOME/liscense.txt if not
 echo Creating qsiprep run script
 echo "#!/bin/bash 
-singularity shell -B \$PWD -B \$FREESURFER_HOME \$HOME/singularity/qsiprep-$QSIPREPVERSION.sif" > $HOME/bin/qsiprep
+singularity exec -B \$FS\_LISCENSE -B \$PWD -B \$FREESURFER_HOME \$HOME/singularity/qsiprep-$QSIPREPVERSION.sif qsiprep \$\@" > $HOME/bin/qsiprep
 chmod +x $HOME/bin/qsiprep
