@@ -37,6 +37,6 @@ fi
 # Have script check that $FS_LISCENSE is set and set it to $FREESURFER_HOME/liscense.txt if not
 echo Creating qsiprep run script
 echo "#!/bin/bash" > $HOME/bin/qsiprep
-echo "export FS\_LISCENSE\=\$FREESURFER_HOME\/liscense\.txt" >> $HOME/bin/qsiprep
-echo "singularity exec -B \$FS\_LISCENSE -B \$PWD -B \$FREESURFER_HOME \$HOME/singularity/qsiprep-$QSIPREPVERSION.sif qsiprep \$\@" >> $HOME/bin/qsiprep
+echo "export FS_LISCENSE=\$FREESURFER_HOME/liscense.txt" >> $HOME/bin/qsiprep
+echo "singularity exec -B \$FS_LISCENSE -B \$PWD -B \$FREESURFER_HOME \$HOME/singularity/qsiprep-$QSIPREPVERSION.sif qsiprep \$@" >> $HOME/bin/qsiprep
 chmod +x $HOME/bin/qsiprep
