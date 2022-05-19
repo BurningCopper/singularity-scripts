@@ -1,0 +1,39 @@
+#!/bin/bash
+RSTUDIOVERSION=4.2.0
+
+# Check for $HOME/bin/ folder
+if ! ls $HOME/bin/ 
+then
+    mkdir $HOME/bin/
+    echo $HOME/bin/ has been created
+else
+    echo $HOME/bin/ already exists
+fi
+
+# Check for $HOME/singularity/ folder
+if ! ls $HOME/singularity/
+then
+    mkdir $HOME/singularity/
+    echo $HOME/singularity/ has been created
+else
+    echo $HOME/singularity/ already exists
+fi
+
+# Create r-base singularity container
+if ! ls $HOME/singularity/r-base-$RSTUDIOVERSION.sif
+then
+    echo Creating r-base-$RSTUDIOVERSION.sif Singularity container
+    cd $HOME/singularity/
+    singularity build r-base-$RSTUDIOVERSION.sif docker://r-base/r-base:$RSTUDIOVERSION
+else
+    echo r-base-$RSTUDIOVERSION.sif already exists
+fi
+
+# Create r-base script
+# Have script check that $FREESURFER_HOME is set (exit with a message if failed)
+# Have script check that $FS_LISCENSE is set and set it to $FREESURFER_HOME/liscense.txt if not
+echo Creating r-base run script
+echo "#!/bin/bash" > $HOME/bin/r-base
+echo "export FS_LISCENSE=\$FREESURFER_HOME\\liscense.txt" >> $HOME/bin/r-base
+echo "singularity exec -B \$FREESURFER_HOME -B \$PWD \$HOME/singularity/r-base-$RSTUDIOVERSION.sif r-base \$@" >> $HOME/bin/r-base
+chmod +x $HOME/bin/r-base
