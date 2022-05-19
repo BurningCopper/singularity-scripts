@@ -34,6 +34,5 @@ fi
 # Have script check that $FS_LISCENSE is set and set it to $FREESURFER_HOME/liscense.txt if not
 echo Creating r-base run script
 echo "#!/bin/bash" > $HOME/bin/r-base
-echo "export FS_LISCENSE=\$FREESURFER_HOME\\liscense.txt" >> $HOME/bin/r-base
-echo "singularity exec -B \$FREESURFER_HOME -B \$PWD \$HOME/singularity/r-base-$RSTUDIOVERSION.sif r-base \$@" >> $HOME/bin/r-base
+echo "singularity exec -B \$PWD \$HOME/singularity/r-base-$RSTUDIOVERSION.sif r \$@" >> $HOME/bin/r-base
 chmod +x $HOME/bin/r-base
