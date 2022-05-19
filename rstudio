@@ -24,7 +24,7 @@ if ! ls $HOME/singularity/r-base-$RSTUDIOVERSION.sif
 then
     echo Creating r-base-$RSTUDIOVERSION.sif Singularity container
     cd $HOME/singularity/
-    singularity build r-base-$RSTUDIOVERSION.sif docker://r-base/r-base:$RSTUDIOVERSION
+    singularity build r-base-$RSTUDIOVERSION.sif docker://r-base:$RSTUDIOVERSION
 else
     echo r-base-$RSTUDIOVERSION.sif already exists
 fi
